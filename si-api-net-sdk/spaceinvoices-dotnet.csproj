@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>SpaceInvoices</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\Public\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Account\" />
+    <Folder Include="Services\Organization\" />
+    <Folder Include="Services\Document\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Entities\Document.cs" />
+    <Compile Remove="Infrastructure\Middleware\RequestStringBuilder.cs" />
+    <Compile Remove="Infrastructure\Middleware\ParserPlugin\ArrayPlugin.cs" />
+    <Compile Remove="Infrastructure\ParameterBuilder.cs" />
+  </ItemGroup>
+</Project>
