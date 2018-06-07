@@ -10,6 +10,19 @@ document -
 - organizationId not under documentation attributes
 _ documentitemtaxes ima typo v responsu? => "_documentemTaxes"
 - pod create document response je pod document items napačna polja, verjetno
+- curl "...?filter[fields][type]=true" vrne internal error
+- @"{
+            //         filter: {
+            //            where: {
+            //              and: [{
+            //                  type: 'invoice'
+            //                }, {
+            //                  draft: false
+            //                }
+            //              ]
+            //            }
+            //          }
+            //        } --> what is curl of that? i dont get it from documents
 
 organization -
 - bank is not under arguments in dosc, only in code.

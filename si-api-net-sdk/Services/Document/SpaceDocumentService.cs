@@ -1,6 +1,8 @@
 ﻿using System;
 using SpaceInvoices.Infrastructure;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SpaceInvoices
 {
@@ -17,13 +19,41 @@ namespace SpaceInvoices
             );
         }
 
-        public virtual List<SpaceDocument> List(string organizationId, string filter)
+        public virtual List<SpaceDocument> List(string organizationId, string filter = null)
         {
             return Mapper<SpaceDocument>.MapCollectionFromJson(
-                Requestor.GetFilter($"{Urls.Organizations}/{organizationId}/documents", filter)
+              Requestor.Get( $"{Urls.Organizations}/{organizationId}/documents", filter)
+          );
+        }
+
+        public virtual SpaceDocument GetById(string documentId, string filter = null)
+        {
+            return Mapper<SpaceDocument>.MapFromJson(
+                Requestor.Get($"{Urls.Documents}/{documentId}", filter)
             );
         }
 
+        // Async
+        public virtual async Task<SpaceDocument> CreateAsync(string organizationId, SpaceDocumentCreateOptions document, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Mapper<SpaceDocument>.MapFromJson(
+                await Requestor.PostAsync(document, $"{Urls.Organizations}/{organizationId}/documents", cancellationToken)
+            );
+        }
+
+        public virtual async Task<List<SpaceDocument>> ListAsync(string organizationId, string filter = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Mapper<SpaceDocument>.MapCollectionFromJson(
+                await Requestor.GetAsync($"{Urls.Organizations}/{organizationId}/documents", filter, cancellationToken)
+          );
+        }
+
+        public virtual async Task<SpaceDocument> GetByIdAsync(string documentId, string filter = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return Mapper<SpaceDocument>.MapFromJson(
+                await Requestor.GetAsync($"{Urls.Documents}/{documentId}", filter, cancellationToken)
+            );
+        }
 
     }
 }

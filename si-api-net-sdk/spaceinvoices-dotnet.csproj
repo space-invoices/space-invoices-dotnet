@@ -20,5 +20,6 @@
     <Compile Remove="Infrastructure\Middleware\RequestStringBuilder.cs" />
     <Compile Remove="Infrastructure\Middleware\ParserPlugin\ArrayPlugin.cs" />
     <Compile Remove="Infrastructure\ParameterBuilder.cs" />
+    <Compile Remove="Infrastructure\Public\Utils.cs" />
   </ItemGroup>
 </Project>

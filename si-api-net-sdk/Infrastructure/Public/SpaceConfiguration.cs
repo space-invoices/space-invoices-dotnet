@@ -24,7 +24,7 @@ namespace SpaceInvoices
             if (string.IsNullOrEmpty(_apiKey))
             {
 #if NET45
-                _apiKey = System.Configuration.ConfigurationManager.AppSettings["StripeApiKey"];
+                _apiKey = System.Configuration.ConfigurationManager.AppSettings["SpaceApiKey"];
 #endif
             }
 
