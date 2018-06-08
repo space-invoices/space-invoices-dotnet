@@ -19,7 +19,7 @@ nuget install SpaceInvoices
 ```bash
 PM> Install-Package SpaceInvoices
 ```
-From within Visual Studio:
+### From within Visual Studio:
 
 1. Open the Solution Explorer.
 2. Right-click on a project within your solution.
