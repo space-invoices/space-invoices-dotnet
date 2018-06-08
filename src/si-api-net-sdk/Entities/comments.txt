@@ -1,0 +1,33 @@
+﻿favicon na docs
+
+account -
+- login nima funkcije v docsih v kodi - narobe je ker je create
+- na gitu je list organizatons narob, manjka id
+- create, authenticate, details vraćajo userId enrat kot userId enkrat pa kot id.. nekonsistentnost
+
+document - 
+- dateserviceto not in documentation under code
+- organizationId not under documentation attributes
+_ documentitemtaxes ima typo v responsu? => "_documentemTaxes"
+- pod create document response je pod document items napačna polja, verjetno
+- curl "...?filter[fields][type]=true" vrne internal error
+- @"{
+            //         filter: {
+            //            where: {
+            //              and: [{
+            //                  type: 'invoice'
+            //                }, {
+            //                  draft: false
+            //                }
+            //              ]
+            //            }
+            //          }
+            //        } --> what is curl of that? i dont get it from documents
+
+organization -
+- bank is not under arguments in dosc, only in code.
+- create organizaton mi da včaish kar couldnt resolve hostname
+
+
+- i didn't know that my account i used when signig up is already usable in API'
+- ni mi čist jasno zakaj je account ogin.. a se morm loginat preden druge klice delam? al je dovol sam api key
