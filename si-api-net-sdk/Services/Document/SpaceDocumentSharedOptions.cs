@@ -6,31 +6,29 @@ namespace SpaceInvoices
 {
     public class SpaceDocumentSharedOptions: SpaceBaseOptions
     {
-        [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
-        public string Id { get; set; }
 
-        [JsonProperty("number", NullValueHandling = NullValueHandling.Ignore)]     
+        [JsonProperty("number")]     
         public string Number { get; set; }
 
-        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("type")]
         public string Type { get; set; }
 
-        [JsonProperty("draft", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("draft")]
         public bool? Draft { get; set; }
 
-        [JsonProperty("date", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("date")]
         public DateTime? Date { get; set; }
 
-        [JsonProperty("dateService", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("dateService")]
         public DateTime? DateService { get; set; }
 
-        [JsonProperty("dateDue", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("dateDue")]
         public DateTime? DateDue { get; set; }
 
-        [JsonProperty("dateServiceTo", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("dateServiceTo")]
         public DateTime? DateServiceTo { get; set; }
 
-        [JsonProperty("currencyId", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("currencyId")]
         public string CurrencyId { get; set; }
 
         [JsonProperty("clientId")]

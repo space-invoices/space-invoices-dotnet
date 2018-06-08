@@ -49,7 +49,5 @@ namespace SpaceInvoices
         [JsonProperty("brand")]
         public string Brand { get; set; }
 
-
-
     }
 }
