@@ -10,14 +10,14 @@ The Space Invoices SDK provides an easy way to access Space Invoices API from ap
 
 ## Installation
 
-###Install SpaceInvoices via NuGet
+### Install SpaceInvoices via NuGet
 ```bash
 nuget install SpaceInvoices
 ```
 
-###From Package Manager:
+### From Package Manager:
 ```bash
-    PM> Install-Package SpaceInvoices
+PM> Install-Package SpaceInvoices
 ```
 From within Visual Studio:
 

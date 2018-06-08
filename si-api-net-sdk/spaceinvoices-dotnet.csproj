@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
     <RootNamespace>SpaceInvoices</RootNamespace>
+    <AssemblyName>SpaceInvoices</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Entities\" />

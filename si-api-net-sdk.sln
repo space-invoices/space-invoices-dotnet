@@ -20,4 +20,7 @@ Global
 		{3AD469CB-30B8-440F-934D-48ECC3AEFF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AD469CB-30B8-440F-934D-48ECC3AEFF21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		description = The Space Invoices SDK provides an easy way to access Space Invoices API from application written in .NET Standard 1.1+, .NET Core 1.0+, and .NET Framework 4.5+
+	EndGlobalSection
 EndGlobal
