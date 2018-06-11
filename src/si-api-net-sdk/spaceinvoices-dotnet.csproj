@@ -3,6 +3,9 @@
     <TargetFramework>netstandard1.1</TargetFramework>
     <RootNamespace>SpaceInvoices</RootNamespace>
     <AssemblyName>SpaceInvoices</AssemblyName>
+    <VersionPrefix>1.0.1</VersionPrefix>
+
+
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
