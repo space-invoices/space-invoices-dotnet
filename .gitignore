@@ -41,3 +41,4 @@ Thumbs.db
 *.dotCover
 
 si-api-net-sdk.Test/
+src/si-api-net-sdk.Test/
