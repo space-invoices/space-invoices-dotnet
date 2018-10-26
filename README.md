@@ -1,5 +1,7 @@
 ﻿# Space Invoices .NET SDK
 
+[![Join the chat at https://gitter.im/space-invoices/space-invoices-dotnet](https://badges.gitter.im/space-invoices/space-invoices-dotnet.svg)](https://gitter.im/space-invoices/space-invoices-dotnet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 The Space Invoices SDK provides an easy way to access Space Invoices API from application written in .NET Standard 1.1+, .NET Core 1.0+, and .NET Framework 4.5+
 
 ## Documentation
