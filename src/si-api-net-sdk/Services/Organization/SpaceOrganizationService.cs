@@ -2,6 +2,8 @@
 using SpaceInvoices.Infrastructure;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SpaceInvoices
 {
@@ -16,6 +18,14 @@ namespace SpaceInvoices
             return Mapper<SpaceOrganization>.MapFromJson(
                 Requestor.Post(organization, $"{Urls.Accounts}/{accountId}/organizations")
             );
+        }
+
+        public virtual List<SpaceOrganization> List(string accountId, string filter = null)
+        {
+            var filterObj = filter != null ? JsonConvert.DeserializeObject(filter) : null;
+            return Mapper<SpaceOrganization>.MapCollectionFromJson(
+                Requestor.Get($"{Urls.Accounts}/{accountId}/organizations", filterObj)
+          );
         }
 
         //Async

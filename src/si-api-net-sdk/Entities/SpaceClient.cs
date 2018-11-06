@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace SpaceInvoices
 {
-    public class SpaceDocumentClient
+    public class SpaceClient
     {
         [JsonProperty("id")]
         public string Id { get; set; }

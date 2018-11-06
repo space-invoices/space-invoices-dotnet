@@ -15,6 +15,13 @@
     <Folder Include="Services\Account\" />
     <Folder Include="Services\Organization\" />
     <Folder Include="Services\Document\" />
+    <Folder Include="Services\Currency\" />
+    <Folder Include="Services\Client\" />
+    <Folder Include="Services\Item\" />
+    <Folder Include="Services\Tax\" />
+    <Folder Include="Services\Company\" />
+    <Folder Include="Services\Payment\" />
+    <Folder Include="Services\Recurrence\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />

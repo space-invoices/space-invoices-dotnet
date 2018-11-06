@@ -3,16 +3,10 @@ using Newtonsoft.Json;
 
 namespace SpaceInvoices
 {
-    public class SpaceDocumentClient
+    public class SpaceClientSharedOptions
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
         [JsonProperty("name")]
         public string Name { get; set; }
-
-        [JsonProperty("organizationId")]
-        public string OrganizationId { get; set; }
 
         [JsonProperty("address")]
         public string Address { get; set; }
@@ -30,7 +24,7 @@ namespace SpaceInvoices
         public string Country { get; set; }
 
         [JsonProperty("taxSubject")]
-        public string TaxSubject { get; set; }
+        public bool TaxSubject { get; set; }
 
         [JsonProperty("taxNumber")]
         public string TaxNumber { get; set; }
