@@ -28,5 +28,7 @@ namespace SpaceInvoices.Infrastructure
         internal static string Payments => BaseUrl + "/payments";
 
         internal static string Recurrences => BaseUrl + "/recurrences";
+
+        internal static string Countries => BaseUrl + "/countries";
     }
 }

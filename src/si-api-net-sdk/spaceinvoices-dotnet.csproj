@@ -1,11 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <RootNamespace>SpaceInvoices</RootNamespace>
     <AssemblyName>SpaceInvoices</AssemblyName>
     <VersionPrefix>1.0.1</VersionPrefix>
 
 
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <NoStdLib>false</NoStdLib>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
@@ -22,6 +28,7 @@
     <Folder Include="Services\Company\" />
     <Folder Include="Services\Payment\" />
     <Folder Include="Services\Recurrence\" />
+    <Folder Include="Services\Country\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />

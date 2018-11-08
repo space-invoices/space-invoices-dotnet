@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-
+using System.IO;
 namespace SpaceInvoices
 {
     public class SpaceOrganizationService : SpaceService
@@ -26,6 +26,20 @@ namespace SpaceInvoices
             return Mapper<SpaceOrganization>.MapCollectionFromJson(
                 Requestor.Get($"{Urls.Accounts}/{accountId}/organizations", filterObj)
           );
+        }
+
+        public virtual SpaceOrganization GetById(string organizationId)
+        {
+            return Mapper<SpaceOrganization>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}")
+          );
+        }
+
+        public virtual string UploadImage(string organizationId, string type,  FileStream image)
+        {
+            return Mapper<string>.MapFromJson(
+                Requestor.PostFile(image, $"{Urls.Organizations}/{organizationId}/upload-image?type={type}")
+            );
         }
 
         //Async

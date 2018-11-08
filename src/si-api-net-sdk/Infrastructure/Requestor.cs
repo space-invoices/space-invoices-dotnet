@@ -10,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using SpaceInvoices.Infrastructure;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+
 
 
 namespace SpaceInvoices.Infrastructure
@@ -34,6 +36,25 @@ namespace SpaceInvoices.Infrastructure
         {
             var wr = GetSpaceRequestMessage(HttpMethod.Post, obj, url);
             return ExecuteRequest(wr);
+        }
+
+        public static SpaceResponse PostFile(FileStream file, string url)
+        {
+           
+            var apiKey = SpaceConfiguration.GetApiKey();
+            using (var client = new HttpClient())
+            {
+                using (var content =
+                    new MultipartFormDataContent("Upload----" + DateTime.Now.ToString(CultureInfo.InvariantCulture)))
+                {
+                    content.Add(new StreamContent(file), "upload image", file.Name);
+                    client.DefaultRequestHeaders.Add("Authorization", apiKey);
+                    var response = client.PostAsync(url, content).ConfigureAwait(false).GetAwaiter().GetResult();
+                    var responseText = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                    var result = BuildResponseData(response, responseText);
+                    return result;
+                }
+            }
         }
 
         public static SpaceResponse Put(object obj, string url)
@@ -98,36 +119,6 @@ namespace SpaceInvoices.Infrastructure
 
             return new HttpRequestMessage(method, new Uri(url));
 
-            //if (method == HttpMethod.Get && obj != null) 
-            //{
-            //    var settings1 = new JsonSerializerSettings();
-            //    settings1.NullValueHandling = NullValueHandling.Ignore;
-            //    settings1.MissingMemberHandling = MissingMemberHandling.Ignore;
-
-            //    var json1 = JsonConvert.SerializeObject(obj, settings1);
-            //    var request1 = new HttpRequestMessage(HttpMethod.Get, new Uri(url))
-            //    {
-            //        Content = new StringContent(json1, Encoding.UTF8, "application/json")
-            //    };
-            //    return request1;
-            //    //return new HttpRequestMessage(method, new Uri(url));
-            //}else if (method == HttpMethod.Get || method == HttpMethod.Delete) {
-            //    return new HttpRequestMessage(method, new Uri(url));
-            //}
-                
-
-            //var settings = new JsonSerializerSettings();
-            //settings.NullValueHandling = NullValueHandling.Ignore;
-            //settings.MissingMemberHandling = MissingMemberHandling.Ignore;
-
-            //var json = JsonConvert.SerializeObject(obj,settings);
-
-            //var request = new HttpRequestMessage(method, new Uri(url))
-            //{
-            //    Content = new StringContent(json, Encoding.UTF8, "application/json")
-            //};
-
-            //return request;
         }
 
          //Async
@@ -154,6 +145,7 @@ namespace SpaceInvoices.Infrastructure
 
             return response;
         }
+
 
         public static SpaceResponse ExecuteRequest(HttpRequestMessage requestMessage)
         {

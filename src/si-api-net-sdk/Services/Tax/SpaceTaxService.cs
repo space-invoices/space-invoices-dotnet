@@ -20,7 +20,7 @@ namespace SpaceInvoices
             );
         }
 
-        public virtual SpaceTaxRate AddANewRateToTax(string taxId, SpaceTaxRate taxRate)
+        public virtual SpaceTaxRate AddRateToTax(string taxId, SpaceTaxRate taxRate)
         {
             return Mapper<SpaceTaxRate>.MapFromJson(
                 Requestor.Post(taxRate, $"{Urls.Taxes}/{taxId}/taxRates")
