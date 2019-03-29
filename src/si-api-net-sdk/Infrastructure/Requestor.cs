@@ -38,7 +38,7 @@ namespace SpaceInvoices.Infrastructure
             return ExecuteRequest(wr);
         }
 
-        public static SpaceResponse PostFile(FileStream file, string url)
+        public static SpaceResponse PostFile(FileStream file, string url, Dictionary<string, string> headers = null)
         {
            
             var apiKey = SpaceConfiguration.GetApiKey();
@@ -49,6 +49,12 @@ namespace SpaceInvoices.Infrastructure
                 {
                     content.Add(new StreamContent(file), "upload image", file.Name);
                     client.DefaultRequestHeaders.Add("Authorization", apiKey);
+                    if (headers != null) {
+                        foreach (KeyValuePair<string, string> entry in headers)
+                        {
+                            client.DefaultRequestHeaders.Add(entry.Key, entry.Value);
+                        }
+                    }
                     var response = client.PostAsync(url, content).ConfigureAwait(false).GetAwaiter().GetResult();
                     var responseText = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
                     var result = BuildResponseData(response, responseText);
@@ -69,10 +75,10 @@ namespace SpaceInvoices.Infrastructure
             return ExecuteRequest(wr);
         }
 
-        public static HttpResponseMessage GetPdf(string url)
+        public static HttpResponseMessage GetFile(string url)
         {
             var wr = GetSpaceRequestMessage(HttpMethod.Get,  null, url);
-            return ExecuteRequestPdf(wr);
+            return ExecuteRequestFile(wr);
         }
 
         public static SpaceResponse Delete(string url)
@@ -81,6 +87,11 @@ namespace SpaceInvoices.Infrastructure
             return ExecuteRequest(wr);
         }
 
+        public static SpaceResponse Patch(object obj, string url)
+        {
+            var wr = GetSpaceRequestMessage(new HttpMethod("PATCH"), obj, url);
+            return ExecuteRequest(wr);
+        }
 
         public static HttpRequestMessage GetSpaceRequestMessage(HttpMethod method, object obj, string url)
         {
@@ -136,7 +147,7 @@ namespace SpaceInvoices.Infrastructure
             return ExecuteRequestAsync(wr, cancellationToken);
         }
 
-        public static HttpResponseMessage ExecuteRequestPdf(HttpRequestMessage requestMessage)
+        public static HttpResponseMessage ExecuteRequestFile(HttpRequestMessage requestMessage)
         {
             var response = HttpClient.SendAsync(requestMessage).ConfigureAwait(false).GetAwaiter().GetResult();
             //var responseText = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();

@@ -50,6 +50,16 @@ namespace SpaceInvoices
            );
         }
 
+
+        public virtual Counter CountClients(string organizationId, string where = null)
+        {
+            var whereObj = where != null ? JsonConvert.DeserializeObject(where) : null;
+            return Mapper<Counter>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/clients/count", whereObj)
+            );
+        }
+
+
         public virtual SpaceClient GetById(string clientId, string filter = null)
         {
             var filterObj = filter != null ? JsonConvert.DeserializeObject(filter) : null;

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using SpaceInvoices.Infrastructure;
+using Newtonsoft.Json;
 
 
 namespace SpaceInvoices
@@ -19,13 +20,43 @@ namespace SpaceInvoices
           );
         }
 
+        public virtual SpaceAccount FindById(string accountId)
+        {
+            return Mapper<SpaceAccount>.MapFromJson(
+                Requestor.Get($"{Urls.Accounts}/{accountId}")
+            );
+        }
+
         public virtual SpaceLogIn LogIn(SpaceAccountLoginOptions account)
         {
             return Mapper<SpaceLogIn>.MapFromJson(
               Requestor.Post(account, $"{Urls.Accounts}/login")
           );
 
-         
+        }
+
+        public virtual SpaceResponse Authorized()
+        {
+            return Requestor.Get($"{Urls.Accounts}/authorized");
+        }
+
+        public virtual SpaceResponse PasswordReset(SpacePasswordResetOptions resetOptions)
+        {
+            return Requestor.Post(resetOptions, $"{Urls.Accounts}/change-password");
+        }
+
+        public virtual Result SendVerificationMail(string accountId)
+        {
+            return Mapper<Result>.MapFromJson(
+                Requestor.Post(null, $"{Urls.Accounts}/{accountId}/send-verification")
+            );
+        }
+
+        public virtual Verified IsVerified(string accountId)
+        {
+            return Mapper<Verified>.MapFromJson(
+                Requestor.Get($"{Urls.Accounts}/{accountId}/is-verified")
+            );
         }
 
         public virtual List<SpaceOrganization> ListOrganizations(string accountId)

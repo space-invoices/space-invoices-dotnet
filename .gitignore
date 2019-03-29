@@ -42,3 +42,6 @@ Thumbs.db
 
 si-api-net-sdk.Test/
 src/si-api-net-sdk.Test/
+
+coverage/
+lauch.json

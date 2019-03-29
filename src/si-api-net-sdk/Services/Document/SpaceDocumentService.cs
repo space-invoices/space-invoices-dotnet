@@ -37,7 +37,7 @@ namespace SpaceInvoices
 
         public virtual HttpResponseMessage GetPdf(string documentId)
         {
-            return Requestor.GetPdf($"{Urls.Documents}/{documentId}/pdf");
+            return Requestor.GetFile($"{Urls.Documents}/{documentId}/pdf");
 
         }
 
@@ -64,6 +64,73 @@ namespace SpaceInvoices
                 Requestor.Get($"{Urls.Documents}/{documentId}", filterObj)
             );
         }
+
+        public virtual Result Cancel(string documentId) {
+            return Mapper<Result>.MapFromJson(
+                Requestor.Post(null, $"{Urls.Documents}/{documentId}/cancel")
+            );
+        }
+
+        public virtual Result Uncancel(string documentId) {
+            return Mapper<Result>.MapFromJson(
+                Requestor.Post(null, $"{Urls.Documents}/{documentId}/uncancel")
+            );
+        }
+
+        public virtual Result MarkSent(string documentId)
+        {
+            return Mapper<Result>.MapFromJson(
+                Requestor.Post(null, $"{Urls.Documents}/{documentId}/mark-sent")
+            );
+        }
+
+        public virtual Counter CountPayments(string documentId)
+        {
+            return Mapper<Counter>.MapFromJson(
+                Requestor.Get($"{Urls.Documents}/{documentId}/payments/count")
+            );
+        }
+
+        public virtual List<SpaceDocument> Search(string organizationId, string term, string type = null)
+        {
+            string typeString = "";
+            if (type != null) {
+                typeString = $"&type={type}";
+            }
+            return Mapper<SpaceDocument>.MapCollectionFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/search-documents?term={term}{type}")
+            );
+        }
+
+        public virtual Unique IsUniqueDocNumber(string organizationId, string number, string type)
+        {
+            return Mapper<Unique>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/is-unique-doc-number?number={number}&type={type}")
+            );
+        }
+
+        public virtual Number LastDocNumber(string organizationId, string type)
+        {
+            return Mapper<Number>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/last-doc-number?type={type}")
+            );
+        }
+
+        public virtual Number NextDocNumber(string organizationId, string type)
+        {
+            return Mapper<Number>.MapFromJson(  
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/next-doc-number?type={type}")
+            );
+        }
+
+        public virtual Counter CountDocuments(string organizationId, string where = null)
+        {
+            var whereObj = where != null ? JsonConvert.DeserializeObject(where) : null;
+            return Mapper<Counter>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/documents/count", whereObj)
+            );
+        }
+
 
         // Async
         public virtual async Task<SpaceDocument> CreateAsync(string organizationId, SpaceDocumentCreateOptions document, CancellationToken cancellationToken = default(CancellationToken))

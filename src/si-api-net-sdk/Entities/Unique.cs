@@ -8,5 +8,8 @@ namespace SpaceInvoices
         [JsonProperty("isUnique")]
         public string IsUnique { get; set; }
 
+        [JsonProperty("unique")]
+        public bool IsUniqueNumber { get; set; }
+
     }
 }

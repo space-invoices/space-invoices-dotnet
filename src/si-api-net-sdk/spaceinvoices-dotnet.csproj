@@ -29,6 +29,11 @@
     <Folder Include="Services\Payment\" />
     <Folder Include="Services\Recurrence\" />
     <Folder Include="Services\Country\" />
+    <Folder Include="Services\BusinessPremise\" />
+    <Folder Include="Services\ElectronicDevice\" />
+    <Folder Include="Services\Default\" />
+    <Folder Include="Services\AccessToken\" />
+    <Folder Include="Services\GeoIp\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />

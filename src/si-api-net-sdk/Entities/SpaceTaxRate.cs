@@ -5,6 +5,9 @@ namespace SpaceInvoices
 {
     public class SpaceTaxRate
     {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
         [JsonProperty("rate")]
         public decimal Rate { get; set; }
 

@@ -51,5 +51,14 @@ namespace SpaceInvoices
                 Requestor.Get($"{Urls.Documents}/{documentId}/recurrence", filter)
             );
         }
+
+        public virtual Counter CountRecurrences(string organizationId, string where = null)
+        {
+            var whereObj = where != null ? JsonConvert.DeserializeObject(where) : null;
+            return Mapper<Counter>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/recurrences/count", whereObj)
+            );
+        }
+
     }
 }

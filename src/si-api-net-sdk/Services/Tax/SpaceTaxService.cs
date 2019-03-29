@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace SpaceInvoices
 {
@@ -27,6 +28,13 @@ namespace SpaceInvoices
             );
         }
 
+        public virtual SpaceResponse DeleteTaxRate(string taxId, string taxRateId)
+        {
+
+            return Requestor.Delete($"{Urls.Taxes}/{taxId}/taxRates/{taxRateId}");
+
+        }
+
         public virtual SpaceTax Edit(string taxId, SpaceTaxEditOptions tax)
         {
             return Mapper<SpaceTax>.MapFromJson(
@@ -46,6 +54,14 @@ namespace SpaceInvoices
             var filterObj = filter != null ? JsonConvert.DeserializeObject(filter) : null;
             return Mapper<SpaceTax>.MapCollectionFromJson(
                 Requestor.Get($"{Urls.Organizations}/{organizationId}/taxes", filterObj)
+            );
+        }
+
+        public virtual Counter CountTaxes(string organizationId, string where = null)
+        {
+            var whereObj = where != null ? JsonConvert.DeserializeObject(where) : null;
+            return Mapper<Counter>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/taxes/count", whereObj)
             );
         }
 

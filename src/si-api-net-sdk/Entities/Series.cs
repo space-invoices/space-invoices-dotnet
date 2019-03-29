@@ -1,18 +1,15 @@
 ﻿using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace SpaceInvoices
 {
-    public class SpaceDefault
+    public class Series
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("value")]
         public string Value { get; set; }
-
     }
 }

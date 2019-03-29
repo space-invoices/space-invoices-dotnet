@@ -30,5 +30,11 @@ namespace SpaceInvoices.Infrastructure
         internal static string Recurrences => BaseUrl + "/recurrences";
 
         internal static string Countries => BaseUrl + "/countries";
+
+        internal static string BusinessPremises => BaseUrl + "/businessPremises";
+
+        internal static string GeoIp => BaseUrl + "/geoip";
+
+        internal static string ElectronicDevices => BaseUrl + "/electronicDevices";
     }
 }

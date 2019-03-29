@@ -47,5 +47,13 @@ namespace SpaceInvoices
                 Requestor.Get($"{Urls.Documents}/{documentId}/payments", filterObj)
             );
         }
+
+        public virtual Counter CountPayments(string organizationId, string where = null)
+        {
+            var whereObj = where != null ? JsonConvert.DeserializeObject(where) : null;
+            return Mapper<Counter>.MapFromJson(
+                Requestor.Get($"{Urls.Organizations}/{organizationId}/payments/count", whereObj)
+            );
+        }
     }
 }
